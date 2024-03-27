@@ -47,7 +47,7 @@ const postCart = async (
     .maybeSingle();
 
   if (data) {
-    return new Response(JSON.stringify({ response: data }), {
+    return new Response(JSON.stringify({ response: { success: true } }), {
       headers: contentTypeHeaders,
       status: 200,
     });
@@ -60,7 +60,7 @@ const postCart = async (
     });
   }
 
-  const { data: insertData, error: insertError } = await supabase
+  const { error: insertError } = await supabase
     .from("cart")
     .insert([{ userId, productId: product.id }]);
 
@@ -71,7 +71,7 @@ const postCart = async (
     });
   }
 
-  return new Response(JSON.stringify({ response: insertData }), {
+  return new Response(JSON.stringify({ response: { success: true } }), {
     headers: contentTypeHeaders,
     status: 200,
   });
