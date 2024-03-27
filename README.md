@@ -14,7 +14,7 @@ Supabase를 이용하여 만든 간단한 api이니 자유롭게 사용하시고
 
 ### anon Key
 
-    `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxnYmJ3Y3Z3dGJydWRpdHl4eGJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE0MzY5MzgsImV4cCI6MjAyNzAxMjkzOH0.V4nEgkFClH7OPi0glqZIQOtvpYkpirAcBGLCp8mJQiw`
+    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxnYmJ3Y3Z3dGJydWRpdHl4eGJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE0MzY5MzgsImV4cCI6MjAyNzAxMjkzOH0.V4nEgkFClH7OPi0glqZIQOtvpYkpirAcBGLCp8mJQiw
 
 
 ## 사용방법
