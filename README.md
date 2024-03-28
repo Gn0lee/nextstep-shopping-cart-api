@@ -84,20 +84,55 @@ Supabase를 이용하여 만든 간단한 api이니 자유롭게 사용하시고
      
 
 3. `GET /products`
-    - 상품의 목록을 조회합니다. 
-    - response
-      ```json
-      {
-        "response": [
-          {
-              "id": "70fac291-591b-44b2-84d8-0b4eea825c4d",
-              "name" : "example",
-              "price" : 2000,
-              "imageUrl" : "image"
-          }
-        ]  
-      }
-      ```
+   1. page 쿼리 파라미터가 없을때
+       - 상품의 목록을 조회합니다. 
+       - response
+         ```json
+         {
+           "response": [
+             {
+                 "id": "70fac291-591b-44b2-84d8-0b4eea825c4d",
+                 "name" : "example",
+                 "price" : 2000,
+                 "imageUrl" : "image"
+             }
+           ]  
+         }
+         ```
+   2. page 쿼리 파라미터가 있을때(페이지 네이션)
+      - 상품의 목록을 페이지에 따라 조회합니다
+      - 요청 예시
+        - `http://127.0.0.1:54321/functions/v1/products?page=0`
+      - page
+        - page의 시작값은 0입니다.
+        - 필수 값입니다.
+        - 정수가 아닌경우 parseInt 처리됩니다.
+      - pageSize
+        - 한 페이지의 개수를 정하는 파라미터입니다.
+        - pageSize의 기본값은 `12` 입니다.
+        - 정수가 아닌경우 parseInt 처리됩니다.
+      - content 필드에 상품 목록이 입력됩니다.
+      - totalElements는 전체 상품의 개수입니다.
+      - 이전 페이지가 없으면 previousPageParam은 `undefined`입니다.
+      - 다음 페이지가 없으면 nextPageParam은 `undefined`입니다.
+      - reponse
+        ```json
+         {
+           "response": {
+              "content" : [
+                  {
+                      "id": "70fac291-591b-44b2-84d8-0b4eea825c4d",
+                      "name" : "example",
+                      "price" : 2000,
+                      "imageUrl" : "image"
+                  }
+              ],
+              "totalElements": 40,
+              "nextPageParam" : 1,
+              "previousPageParam": 3        
+            }  
+         }
+         ```
       
 4. `GET /products/:id`
     - 상품의 id를 통해 상품의 정보를 조회합니다.
@@ -313,3 +348,18 @@ export interface Order {
 }
 
 ```
+
+
+### Pagination
+
+```typescript
+export interface Pagination<Content> {
+   content: Content[];
+   totalElements: number;
+   totalPages: number;
+   nextPageParam?: number;
+   previousPageParam?: number;
+}
+
+```
+
