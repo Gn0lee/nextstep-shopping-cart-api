@@ -43,7 +43,7 @@ Supabase를 이용하여 만든 간단한 api이니 자유롭게 사용하시고
 
 1. `POST /user`
    - 유저를 생성한 하고 유저 id를 반환합니다.
-   - request
+   - request body
     ```json
     {
       "name": "example"
@@ -62,7 +62,7 @@ Supabase를 이용하여 만든 간단한 api이니 자유롭게 사용하시고
    
 2. `POST /products`
    - 상품을 생성합니다.
-   - request
+   - request body
        ```json
        {
          "name" : "example",
@@ -152,7 +152,7 @@ Supabase를 이용하여 만든 간단한 api이니 자유롭게 사용하시고
 5. `POST /cart`
     - 장바구니에 물품을 추가합니다.
     - 같은 물품을 추가하여도 row가 생성되지 않습니다.
-    - request
+    - request body
         ```json
         {
           "product" : {
@@ -206,7 +206,7 @@ Supabase를 이용하여 만든 간단한 api이니 자유롭게 사용하시고
       
 8. `PUT /carts`
     - 여러개의 장바구니를 한번에 삭제합니다.
-    - request
+    - request body
         ```json
         {
           "ids" : ["id1", "id2"]
@@ -224,7 +224,7 @@ Supabase를 이용하여 만든 간단한 api이니 자유롭게 사용하시고
 
 8. `POST /orders`
     - 주문을 생성합니다.
-    - request
+    - request body
         ```json
         {
           "orderDetails" : [
