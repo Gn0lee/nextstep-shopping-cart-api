@@ -27,7 +27,7 @@ const getUsers = async (supabase: SupabaseClient) => {
 };
 
 const getUser = async (supabase: SupabaseClient, id: string) => {
-  const { data: product, error } = await supabase
+  const { data: users, error } = await supabase
     .from("user")
     .select("*")
     .eq("id", id);
@@ -41,14 +41,37 @@ const getUser = async (supabase: SupabaseClient, id: string) => {
     });
   }
 
-  return new Response(JSON.stringify({ response: product[0] }), {
+  return new Response(JSON.stringify({ response: users[0] }), {
     headers: contentTypeHeaders,
     status: 200,
   });
 };
 
 const postUser = async (supabase: SupabaseClient, user: { name: string }) => {
-  const { data, error } = await supabase.from("user").insert([user]).select();
+  const { data: userData, error: userError } = await supabase
+    .from("user")
+    .select("*")
+    .eq("name", user.name)
+    .maybeSingle();
+
+  if (userError) {
+    return new Response(JSON.stringify({ code: userError.code }), {
+      headers: contentTypeHeaders,
+      status: 500,
+    });
+  }
+
+  if (userData) {
+    return new Response(JSON.stringify({ response: userData }), {
+      headers: contentTypeHeaders,
+      status: 200,
+    });
+  }
+
+  const { data, error } = await supabase
+    .from("user")
+    .insert([userData])
+    .select();
 
   if (error) {
     return new Response(JSON.stringify({ code: error.code }), {
