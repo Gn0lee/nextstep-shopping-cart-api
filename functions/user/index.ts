@@ -68,10 +68,7 @@ const postUser = async (supabase: SupabaseClient, user: { name: string }) => {
     });
   }
 
-  const { data, error } = await supabase
-    .from("user")
-    .insert([userData])
-    .select();
+  const { data, error } = await supabase.from("user").insert([user]).select();
 
   if (error) {
     return new Response(JSON.stringify({ code: error.code }), {
